@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <NuxtPage />
-  </div>
+    <div>
+        <select name="select" id=""></select>
+    </div>
 </template>
 
 <script setup lang="ts">

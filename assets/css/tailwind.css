@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-gray-50;
+  background-image: url('~/assets/a/intro-background.png');
+  background-size: cover;
+}
+
+@layer components {
+  .btn {
+    @apply bg-[#12b488] text-white px-3 py-2 rounded-md text-sm text-white inline-block;
+  }
+  .card {
+    @apply p-6 rounded-3xl border-[1px] border-[#CDCDCD] bg-white;
+    position: relative;
+
+    &::before {
+      content: '';
+      background-image: url('~/assets/a/comet.png');
+      background-size: contain;
+      position: absolute;
+      top: 0;
+      right: 0;
+      display: block;
+      width: 202px;
+      height: 80px;
+      transform: translate(-24px, -58px);
+
+
+    }
+  }
+}
+

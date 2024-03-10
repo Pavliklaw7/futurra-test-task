@@ -3,9 +3,14 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
     '@nuxt/image',
+    '@nuxtjs/device',
     '@nuxtjs/tailwindcss'
   ],
   image: {
     dir: 'assets'
   },
+  device: {
+    refreshOnResize: true
+  }
 })
+

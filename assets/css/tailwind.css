@@ -2,10 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
+:root,
+:root.a {
+  --background-image: url('~/assets/A/intro-background.png')
+  --text-hilight: #FF8D24;
+}
+
+:root.b {
+  --background-image: url('assets/B/intro-background.png')
+  --text-hilight: #66edff;
+}
 body {
-  @apply bg-gray-50;
-  background-image: url('~/assets/a/intro-background.png');
+  @apply bg-gray-50 h-screen;
+  background-image: var(--background-image);
   background-size: cover;
+}
+
+@layer base {
+  @font-face {
+    font-family: "Proxima Nova Regular";
+    src: url('~/assets/fonts/ProximaNova/proximanova_regular.woff') format("woff"),
+         url('~/assets/fonts/ProximaNova/proximanova_regular.woff2') format("woff2");
+  }
+  
+  /* body {
+    font-family: "Proxima Nova Regular";
+  } */
 }
 
 @layer components {
@@ -13,7 +35,7 @@ body {
     @apply bg-[#12b488] text-white px-3 py-2 rounded-md text-sm text-white inline-block;
   }
   .card {
-    @apply p-6 rounded-3xl border-[1px] border-[#CDCDCD] bg-white;
+    @apply rounded-3xl border-[1px] border-[#CDCDCD] bg-white;
     position: relative;
 
     &::before {
@@ -30,6 +52,11 @@ body {
 
 
     }
+  }
+
+  .text-hilight {
+    color: var(--text-hilight);
+    font-weight: bold;
   }
 }
 

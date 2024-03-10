@@ -1,11 +1,22 @@
 <template>
-    <button :class="`inline-grid grid-flow-col items-center justify-center gap-2 w-full ${wFull ? 'max-w-auto': 'max-w-[273px]'} h-[56px] rounded-xl bg-black text-white text-center`">
-        <NuxtImg v-if="icon" :width="iconSize.width" :height="iconSize.height" :src="`icons/${icon}.svg`" :alt="`${icon} icon`" />
-        {{ title }}
-    </button>
+  <button
+    :class="`inline-grid grid-flow-col items-center justify-center gap-2 w-full 
+    ${wFull ? 'max-w-auto': ''} h-[56px] rounded-xl bg-black text-white text-center`"
+  >
+    <NuxtImg
+      v-if="icon"
+      :width="iconSize.width"
+      :height="iconSize.height"
+      :src="`${route.name}/icons/${icon}.svg`"
+      :alt="`${icon} icon`"
+    />
+    {{ title }}
+  </button>
 </template>
 
 <script setup>
+const route = useRoute()
+
 defineProps({
     title: {
         type: String,
@@ -16,20 +27,23 @@ defineProps({
         default: false
     },
     icon: {
-        type: String
+        type: String,
+        default: ''
     },
     iconSize: {
         type: Object,
+        // eslint-disable-next-line vue/require-valid-default-prop
         default: {
             height: 24,
             width: 24
         }
     },
     variant: {
-        type: String, // TODO: make 'primaru' | 'secondary' without error
+        type: String, // 'primary' | 'secondary' | 'casper',
         default: 'primary'
     }
 })
+
 </script>
 
 <style lang="scss" scoped>

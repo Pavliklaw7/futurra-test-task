@@ -4,7 +4,7 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/image',
     '@nuxtjs/device',
-    '@nuxtjs/tailwindcss'
+    '@nuxtjs/tailwindcss',
   ],
   image: {
     dir: 'assets'
@@ -14,6 +14,11 @@ export default defineNuxtConfig({
   },
   routeRules: {
     '/': { prerender: true }
-  }
+  },
+  app: {
+    head: {
+        link: [{ rel: 'icon', type: 'image/png', href: '_nuxt/public/favicon.png' }]
+    }
+},
 })
 

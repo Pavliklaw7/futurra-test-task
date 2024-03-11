@@ -10,7 +10,7 @@
     >
       <NuxtImg
         class="w-full"
-        :src="`${String(route.name)}/icons/star.svg`"
+        :src="`${currentPageName}/icons/star.svg`"
         alt="star"
       />
       <p v-html="item" />
@@ -19,7 +19,8 @@
 </template>
 
 <script setup lang="ts">
-const route = useRoute()
+const instace = getCurrentInstance();
+const currentPageName = instace!.parent?.type.__name!
 
 defineProps({
     items: {

@@ -3,74 +3,226 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "outfit";
-  src: url('~/assets/fonts/Outfit/outfit_regular.ttf') format("ttf");
+  font-family: "Outfit";
+  src: url('~/assets/fonts/Outfit/outfit_regular.ttf');
 }
 
 @font-face {
-  font-family: "proxima";
-  src: url('~/assets/fonts/ProximaNova/proximanova_regular.woff') format("woff"),
-        url('~/assets/fonts/ProximaNova/proximanova_regular.woff2') format("woff2");
+  font-family: "Proxima Nova";
+  src: url('~/assets/fonts/ProximaNova/proximanova_regular.woff') format("woff");
+  font-weight: normal;
+  font-style: normal;
 }
+
+@font-face {
+  font-family: "Proxima Nova";
+  src: url('~/assets/fonts/ProximaNova/proximanova_bold.woff') format("woff");
+  font-weight: bold;
+  font-style: normal;
+}
+
   
+
 :root,
 :root.a-page {
-  --background-image: url('~/assets/A/intro-background.png');
+  --background-image: url('~/assets/APage/intro-background.png');
   --text-hilight: #FF8D24;
+  --text-primary: #01c120;
+  --text-button-primary: #fff;
+  --text-disabled: rgba(0, 0, 0, 0.4);
+  --color-primary: #01c120;
 }
 
 :root.b-page {
-  --background-image: url('~/assets/B/intro-background.png');
+  --background-image: url('~/assets/BPage/intro-background.png');
   --text-hilight: #66edff;
+  --text-primary: #4EAAFF;
+  --text-button-primary: #495EEE;
+  --text-disabled: rgba(255, 255, 255, 0.6);
+  --color-primary: #4EAAFF;
+}
+
+div { 
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+  
 }
 body {
   @apply bg-gray-50 h-screen;
+  font-family: 'Proxima Nova';
   background-image: var(--background-image);
   background-size: cover;
 }
 
 @layer base {
-  .h1-text {
-    font-size: 48px;
-    font-weight: 800;
-    line-height: 57.6px;
+  .bg-primary {
+    background-color: var(--color-primary);
   }
 
-  .h4-text {
-    font-size: 24px;
-    font-weight: 28.8px;
-    font-weight: 600;
+  .a-page {
+    .h1-text {
+      font-size: 48px;
+      font-weight: 600;
+      line-height: 57.6px;
+    }
+    .h4-text {
+      font-size: 24px;
+      font-weight: 28.8px;
+      font-weight: 500;
+    }
+    .card {
+      @apply rounded-3xl shadow-[0_0_0_1px_rgba(0,0,0,0.06)] border-[#CDCDCD] bg-white;
+
+      &::before {
+        content: '';
+        background-image: url('~/assets/APage/comet.png');
+        background-size: contain;
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: block;
+        width: 202px;
+        height: 80px;
+        transform: translate(-24px, -58px);
+        
+        @media(max-width: 480px) {
+          display: none;
+        }
+      }
+    }
+    .btn {
+      @apply bg-white text-black;
+    }
+    .btn-primary {
+      @apply bg-black;
+      color: var(--text-button-primary);
+    }
+  
+    .btn-secondary {
+      @apply border-[1px] bg-white;
+    }
+  
+    .btn-warning {
+      @apply bg-[#fec538] border-none uppercase text-black;
+    }
+  
+    .btn-casper {
+      @apply bg-transparent text-black opacity-60;
+    }
+    .btn-disabled {
+      @apply bg-slate-300 pointer-events-none;
+    }
+
+    .base-select  {
+      @apply text-gray-900;
+      .base-select__select {
+        @apply border-gray-300;
+      }
+      .base-select__select.open {
+        @apply border-[#00CA14] rounded-b-none;
+      }
+    }
+    .modal {
+      background-color: #fff;
+    }
+  }
+
+  .b-page {
+    color: #fff;
+
+    .h1-text {
+      font-size: 40px;
+      font-weight: 800;
+    }
+    .h4-text {
+      font-size: 24px;
+      font-weight: 28.8px;
+    }
+    .card {
+      @apply relative rounded-3xl md:shadow-[0_0_0_4px_rgba(255,255,255,0.4)] border-[#CDCDCD] bg-[rgba(0,0,0,0.6)] md:bg-transparent md:backdrop-blur-[20px] z-10;
+    }
+    .btn {
+      @apply bg-white text-black;
+    }
+    .btn-primary {
+      @apply bg-white;
+      color: var(--text-button-primary);
+    }
+    .btn-secondary {
+      color: var(--text-hilight);
+      background-color: rgba(0,0,0,0.2);
+    }
+    .btn-warning {
+      @apply border-none bg-[#fec538] uppercase text-black;
+    }
+    .btn-casper {
+      @apply bg-transparent text-white opacity-60;
+    }
+    .btn-disabled {
+      @apply pointer-events-none;
+      background-color: rgba(97, 115, 152, 1);
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    .modal {
+      background-color: rgba(77, 94, 130, 1);
+    }
+    .base-input {
+      label {
+        background-color: rgba(97, 115, 152, 1);
+      }
+
+      .base-input__input {
+        @apply ring-[#7899ff];
+        color: #fff;
+        background-color: rgba(97, 115, 152, 1);
+      }
+    }
+
+    .base-select  {
+      color: #fff;
+      .base-select__label {
+        @apply rounded-full;
+        color: #fff;
+        background-color: rgba(97, 115, 152, 1);
+      }
+      .base-select__select {
+        @apply border-none;
+        background-color: rgba(97, 115, 152, 1);
+      }
+      .base-select__select.open {
+        @apply border-[#495EEE] rounded-b-none;
+      }
+      .base-select__option {
+        @apply hover:bg-[#7899ff] bg-[#617398] text-white border-[#7899ff];
+        
+      }
+      .base-select__dropdown {
+        border-color: rgba(255, 255, 255, 0.3);
+
+      }
+    }
+
+    .hideBorder {
+      @apply ring-0;
+    }
   }
 }
 
 @layer components {
-  .btn {
-    @apply bg-[#12b488] text-white px-3 py-2 rounded-md text-sm inline-block;
-  }
-  .card {
-    @apply rounded-3xl shadow-[0_0_1px_1px_rgba(0,0,0,0.06)] border-[#CDCDCD] bg-white;
-    position: relative;
 
-    &::before {
-      content: '';
-      background-image: url('~/assets/a/comet.png');
-      background-size: contain;
-      position: absolute;
-      top: 0;
-      right: 0;
-      display: block;
-      width: 202px;
-      height: 80px;
-      transform: translate(-24px, -58px);
-    }
+  .text-primary {
+    color: var(--text-primary);
   }
 
   .text-hilight {
     color: var(--text-hilight);
-    font-weight: bold;
   }
 
   .text-disabled {
-    color: rgba(0, 0, 0, 0.4)
+    color: var(--text-disabled);
+  }
+  .text-label {
+    color: #121826;
   }
 }

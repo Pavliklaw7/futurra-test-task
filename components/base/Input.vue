@@ -1,22 +1,22 @@
 <template>
-  <div class="relative">
+  <div class="base-input relative mt-[7px]">
     <label
       for="card-number"
-      class="absolute top-0 translate-y-[-50%] px-[5px] left-[12.15px] bg-white"
+      :class="`base-input__label absolute text-xs top-0 translate-y-[-50%] px-[5px] bg-white left-[12.15px] rounded-full font-bold`"
     >{{ label }}</label>
     <NuxtImg
       v-if="icon"
       class="absolute top-1/2 right-3 -translate-y-1/2"
       :width="iconSize.width"
       :height="iconSize.height"
-      :src="`${String(route.name)}/icons/${icon}.svg`"
+      :src="`${currentPageName}/icons/${icon}.svg`"
       :alt="`${icon} icon`"
     />
     <input
-      v-model="value"
+      v-model="modelValue"
       type="text"
       name="card-number"
-      :class="`block w-full rounded-md border-0 h-[46px] pl-7 ${icon ? 'pr-20' : 'pr-7'} text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6`"
+      :class="`base-input__input px-4 block w-full rounded-md bg-white border-0 h-[46px] ring-gray-300 ring-1 ring-inset focus:ring-2 focus:ring-inset focus:ring-indigo-600 text-gray-900 ${icon ? 'pr-20' : 'pr-7'} text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6 ${hideBorder && 'hideBorder'}`"
       :placeholder="placeholder"
       :maxlength="maxLength"
       @input="handleInput"
@@ -25,10 +25,11 @@
 </template>
 
 <script setup lang="ts">
-const route = useRoute()
+const instace = getCurrentInstance();
+const testedPage = useCookie('tested-page')
+const currentPageName = instace!.parent?.type.__name ? instace!.parent?.type.__name : testedPage ? testedPage : 'APage'
 
-const value = ref('')
-
+const modelValue = ref('')
 const {
     isCreditCard,
     onlyNumbers,
@@ -38,6 +39,7 @@ const {
         type: String,
         default: ''
     },
+
     placeholder: {
         type: String,
         default: ''
@@ -58,17 +60,24 @@ const {
         type: Number,
         default: 1000
     },
+    hideBorder: {
+        type: Boolean,
+        defaule: false
+    },
     isCreditCard: Boolean,
     onlyNumbers: Boolean,
     onlyLetters: Boolean
 })
       
+const emit = defineEmits<{
+  'update:modelValue': [value: string];
+}>();
 
 const handleInput = (e: Event) => {
     const target = e.target as HTMLInputElement;
-
+    
     if (onlyNumbers) {
-        target.value = value.value.replace(/\D/g, "");
+        target.value = modelValue.value.replace(/\D/g, "");
     }
     if (onlyLetters) {
         target.value = target.value.replace(/[^a-z A-Z]/g, '');
@@ -77,10 +86,9 @@ const handleInput = (e: Event) => {
         target.value = applyCreditCardMask(target.value)
     }
 
-    value.value = target.value;
+    modelValue.value = target.value;
 
-   // this.$emit('input', target.value.trim());
-
+    emit('update:modelValue', target.value.trim());
 }
 
 const applyCreditCardMask = (value: string) => {

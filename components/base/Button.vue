@@ -1,23 +1,23 @@
 <template>
   <button
-    :class="`inline-grid grid-flow-col items-center justify-center gap-2 w-full font-bold text-base leading-[19.2px]
-    ${wFull ? 'max-w-auto': ''} 
-    ${disabled && 'bg-slate-300 pointer-events-none'}
-    h-[56px] rounded-xl  text-center ${variantStyles()}`"
+    :class="[`inline-grid grid-flow-col items-center justify-center gap-2 w-full font-bold text-base leading-[19.2px] h-[56px] rounded-xl text-center bg`,
+             `${variant ? `btn-${variant}` : 'btn'}`, {wFull:'w-full max-w-auto'}, {'btn-disabled': disabled}]"
   >
     <NuxtImg
       v-if="icon"
       :width="iconSize.width"
       :height="iconSize.height"
-      :src="`${route.name}/icons/${icon}.svg`"
+      :src="`${currentPageName}/icons/${icon}.svg`"
       :alt="`${icon} icon`"
     />
     {{ title }}
   </button>
 </template>
 
-<script setup>
-const route = useRoute()
+<script setup lang="ts">
+const instace = getCurrentInstance();
+const testedPage = useCookie('tested-page')
+const currentPageName = instace!.parent?.type.__name ? instace!.parent?.type.__name : testedPage ? testedPage : 'APage'
 
 const {variant} = defineProps({
     title: {
@@ -45,20 +45,9 @@ const {variant} = defineProps({
       default: false
     },
     variant: {
-        type: String, // 'primary' | 'secondary' | 'casper',
-        default: 'primary'
+        type: String, // 'primary' | 'secondary' | 'casper' | 'warning',
+        default: ''
     }
 })
 
-const variantStyles = () => {
-  if (variant === 'primary') {
-    return 'bg-black text-white'
-  }
-  if (variant === 'secondary') {
-    return 'border'
-  }
-  if (variant === 'casper') {
-    return 'border-[1px] bg-white text-[#01c120]'
-  }
-}
 </script>

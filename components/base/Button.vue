@@ -1,7 +1,9 @@
 <template>
   <button
-    :class="`inline-grid grid-flow-col items-center justify-center gap-2 w-full 
-    ${wFull ? 'max-w-auto': ''} h-[56px] rounded-xl bg-black text-white text-center`"
+    :class="`inline-grid grid-flow-col items-center justify-center gap-2 w-full font-bold text-base leading-[19.2px]
+    ${wFull ? 'max-w-auto': ''} 
+    ${disabled && 'bg-slate-300 pointer-events-none'}
+    h-[56px] rounded-xl  text-center ${variantStyles()}`"
   >
     <NuxtImg
       v-if="icon"
@@ -17,7 +19,7 @@
 <script setup>
 const route = useRoute()
 
-defineProps({
+const {variant} = defineProps({
     title: {
         type: String,
         required: true
@@ -38,14 +40,25 @@ defineProps({
             width: 24
         }
     },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
     variant: {
         type: String, // 'primary' | 'secondary' | 'casper',
         default: 'primary'
     }
 })
 
+const variantStyles = () => {
+  if (variant === 'primary') {
+    return 'bg-black text-white'
+  }
+  if (variant === 'secondary') {
+    return 'border'
+  }
+  if (variant === 'casper') {
+    return 'border-[1px] bg-white text-[#01c120]'
+  }
+}
 </script>
-
-<style lang="scss" scoped>
-
-</style>

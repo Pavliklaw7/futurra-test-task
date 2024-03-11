@@ -2,14 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "outfit";
+  src: url('~/assets/fonts/Outfit/outfit_regular.ttf') format("ttf");
+}
+
+@font-face {
+  font-family: "proxima";
+  src: url('~/assets/fonts/ProximaNova/proximanova_regular.woff') format("woff"),
+        url('~/assets/fonts/ProximaNova/proximanova_regular.woff2') format("woff2");
+}
+  
 :root,
-:root.a {
-  --background-image: url('~/assets/A/intro-background.png')
+:root.a-page {
+  --background-image: url('~/assets/A/intro-background.png');
   --text-hilight: #FF8D24;
 }
 
-:root.b {
-  --background-image: url('assets/B/intro-background.png')
+:root.b-page {
+  --background-image: url('~/assets/B/intro-background.png');
   --text-hilight: #66edff;
 }
 body {
@@ -19,23 +30,25 @@ body {
 }
 
 @layer base {
-  @font-face {
-    font-family: "Proxima Nova Regular";
-    src: url('~/assets/fonts/ProximaNova/proximanova_regular.woff') format("woff"),
-         url('~/assets/fonts/ProximaNova/proximanova_regular.woff2') format("woff2");
+  .h1-text {
+    font-size: 48px;
+    font-weight: 800;
+    line-height: 57.6px;
   }
-  
-  /* body {
-    font-family: "Proxima Nova Regular";
-  } */
+
+  .h4-text {
+    font-size: 24px;
+    font-weight: 28.8px;
+    font-weight: 600;
+  }
 }
 
 @layer components {
   .btn {
-    @apply bg-[#12b488] text-white px-3 py-2 rounded-md text-sm text-white inline-block;
+    @apply bg-[#12b488] text-white px-3 py-2 rounded-md text-sm inline-block;
   }
   .card {
-    @apply rounded-3xl border-[1px] border-[#CDCDCD] bg-white;
+    @apply rounded-3xl shadow-[0_0_1px_1px_rgba(0,0,0,0.06)] border-[#CDCDCD] bg-white;
     position: relative;
 
     &::before {
@@ -49,8 +62,6 @@ body {
       width: 202px;
       height: 80px;
       transform: translate(-24px, -58px);
-
-
     }
   }
 
@@ -58,5 +69,8 @@ body {
     color: var(--text-hilight);
     font-weight: bold;
   }
-}
 
+  .text-disabled {
+    color: rgba(0, 0, 0, 0.4)
+  }
+}

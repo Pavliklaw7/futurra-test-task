@@ -42,11 +42,13 @@
             <BaseButton
               class="mb-3 max-w-[300px]"
               title="Submit"
+              :disabled="!isFormValid"
             />
 
             <BaseButton
               class="max-w-[300px]"
               title="close"
+              @click="onClose"
             />
           </div>
         </div>
@@ -60,6 +62,7 @@ import { onClickOutside } from '@vueuse/core';
 import { ref } from 'vue';
 
 const modal = ref(null);
+const isFormValid = ref(false)
 
 const emit = defineEmits(['close']);
 

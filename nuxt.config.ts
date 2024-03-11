@@ -11,6 +11,9 @@ export default defineNuxtConfig({
   },
   device: {
     refreshOnResize: true
+  },
+  routeRules: {
+    '/': { prerender: true }
   }
 })
 

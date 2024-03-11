@@ -61,7 +61,4 @@ const open = ref(false)
 //   })
   </script>
   
-  <style scoped>
-
-  </style>
   

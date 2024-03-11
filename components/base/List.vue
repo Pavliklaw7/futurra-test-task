@@ -1,6 +1,6 @@
 <template>
   <ul
-    class="hidden md:grid justify-start mb-6 marker:pb-2"
+    class="grid justify-start mb-6 marker:pb-2 marker:text-xxl"
     role="list"
   >
     <li
@@ -28,7 +28,3 @@ defineProps({
     }
 })
 </script>
-
-<style scoped>
-
-</style>

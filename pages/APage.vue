@@ -46,7 +46,7 @@
               <h4 class="h4-text font-extrabold mb-2">
                 3-day trial for <span class="font-bold text-hilight">$0.99</span>
               </h4>
-              <p class="text-xl font-normal md:font-semibold leading-6">
+              <p class="text-xl font-normal md:font-normal leading-6">
                 {{ isTimeOut ? '$39.99/week' : 'Then $9.99' }}
               </p>
               <p

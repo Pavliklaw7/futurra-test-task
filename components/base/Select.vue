@@ -4,7 +4,7 @@
     :tabindex="tabindex"
     @blur="open = false"
   >
-    <label :class="`base-select__label text-label absolute top-0 translate-y-[-50%] px-[5px] leading-3 text-xs left-[12.15px] text-black bg-white`">{{ label }}</label>
+    <label :class="`base-select__label font-semibold text-label absolute top-0 translate-y-[-50%] px-[5px] leading-3 text-xs left-[12.15px] text-black bg-white`">{{ label }}</label>
     <div
       :class="`base-select__select flex items-center text-xs font-normal h-full bg-white border-[1px] rounded-md  pl-4 cursor-pointer select-none pr-6 truncate ${open && 'open'}`"
       @click="open = !open"

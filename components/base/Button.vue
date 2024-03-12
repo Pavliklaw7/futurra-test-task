@@ -1,6 +1,6 @@
 <template>
   <button
-    :class="[`inline-grid grid-flow-col items-center justify-center gap-2 w-full font-bold text-base leading-[19.2px] h-[56px] rounded-xl text-center bg`,
+    :class="[`inline-grid grid-flow-col items-center justify-center gap-2 w-full font-normal text-base leading-[19.2px] h-[56px] rounded-xl text-center bg`,
              `${variant ? `btn-${variant}` : 'btn'}`, {wFull:'w-full max-w-auto'}, {'btn-disabled': disabled}]"
   >
     <NuxtImg

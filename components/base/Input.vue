@@ -2,7 +2,7 @@
   <div class="base-input relative mt-[7px]">
     <label
       for="card-number"
-      :class="`base-input__label absolute text-xs top-0 translate-y-[-50%] px-[5px] bg-white left-[12.15px] rounded-full font-bold`"
+      :class="`base-input__label font-semibold absolute text-xs top-0 translate-y-[-50%] px-[5px] bg-white left-[12.15px] rounded-full`"
     >{{ label }}</label>
     <NuxtImg
       v-if="icon"
